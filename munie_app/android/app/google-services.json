@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "988744167252",
+    "firebase_url": "https://munie-76d5f.firebaseio.com",
+    "project_id": "munie-76d5f",
+    "storage_bucket": "munie-76d5f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988744167252:android:fb0df09adb6fdc26cfa2c1",
+        "android_client_info": {
+          "package_name": "com.munieapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988744167252-cu0kkuprp5o6qq49o5bbalok0io9aos7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaSZpuK58or5E7fB73rHhwAd2j-Zf-KPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988744167252-cu0kkuprp5o6qq49o5bbalok0io9aos7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
