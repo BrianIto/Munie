@@ -8,7 +8,7 @@ const TextField = props => {
       <Text style={styles.text}>{props.label}</Text>
       <TextInput
         style={styles.textInput}
-        onChange={props.onChange}
+        onChangeText={props.onChange}
         keyboardType={props.keyboardType}
         placeholder={props.placeholder}
       />

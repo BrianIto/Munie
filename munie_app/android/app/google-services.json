@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988744167252:android:fb0df09adb6fdc26cfa2c1",
+        "mobilesdk_app_id": "1:988744167252:android:40be26ad35dc7cc2cfa2c1",
         "android_client_info": {
-          "package_name": "com.munieapp"
+          "package_name": "com.munie_app"
         }
       },
       "oauth_client": [

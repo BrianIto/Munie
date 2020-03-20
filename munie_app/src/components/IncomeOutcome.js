@@ -1,22 +1,41 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
+import moment from 'moment/min/moment-with-locales.min';
 const IncomeOutcome = props => {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        props.isEntrada
+          ? {borderLeftColor: '#58A600'}
+          : {borderLeftColor: '#FF3322'},
+      ]}>
       <View style={styles.row}>
-        <View style={styles.descContainer}>
-          <Text style={[styles.text, {fontSize: 16}]}>
-            Descrição do Produto Adquirido
+        <View style={[styles.descContainer]}>
+          <Text style={[styles.text, {fontSize: 18}]}>
+            {props.valores.descricao}
           </Text>
-          <Text style={[styles.text, {fontWeight: '700', fontSize: 16}]}>
-            R$35,00
+          <Text style={[styles.text, {fontWeight: '700', fontSize: 19}]}>
+            R${props.valores.valor},00
           </Text>
         </View>
         <View style={styles.dateContainer}>
-          <Text style={[styles.text, styles.textDay]}>25</Text>
-          <Text style={styles.text}>JAN</Text>
-          <Text style={[styles.text, {fontSize: 11}]}>19:35</Text>
+          <Text style={[styles.text, styles.textDay, {textAlign: 'center'}]}>
+            {moment(props.valores.data.seconds * 1000)
+              .utc()
+              .format('DD')}
+          </Text>
+          <Text style={[styles.text, {textAlign: 'center'}]}>
+            {moment(props.valores.data.seconds * 1000)
+              .utc()
+              .format('MMM')
+              .toUpperCase()}
+          </Text>
+          <Text style={[styles.text, {fontSize: 11, textAlign: 'center'}]}>
+            {moment(props.valores.data.seconds * 1000)
+              .utc()
+              .format('HH:mm')}
+          </Text>
         </View>
       </View>
     </View>
@@ -36,7 +55,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     elevation: 3,
     marginTop: 12,
-    borderLeftColor: '#58A600',
     color: '#FFF',
   },
   text: {

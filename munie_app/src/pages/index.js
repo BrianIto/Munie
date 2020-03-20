@@ -6,12 +6,34 @@ import Saldo from '../components/Saldo';
 import IncomeOutcome from '../components/IncomeOutcome';
 import ModalNewIncome from '../components/modals/NewIncome';
 import ModalNewOutcome from '../components/modals/NewOutcome';
+import firebase from '@react-native-firebase/app';
+import EntradaDAO from '../DAOs/entradaDAO';
+import Actions from '../redux/actions/actions';
+import {connect} from 'react-redux';
+import SaidaDAO from '../DAOs/saidaDAO';
 
 const IndexPage = props => {
+  const setFirebase = async () => {
+    return await firebase.app();
+  };
+
+  React.useEffect(() => {
+    let app = null;
+    setFirebase().then(application => {
+      app = application;
+      EntradaDAO.getEntradas().then(res => {
+        props.getEntradas(res);
+      });
+      SaidaDAO.getSaidas().then(res => {
+        props.getSaidas(res);
+      });
+    });
+  }, []);
+
   const [newIncomeVisible, setNewIncomeVisible] = React.useState(false);
   const [newOutcomeVisible, setNewOutcomeVisible] = React.useState(false);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <ModalNewIncome
         visible={newIncomeVisible}
         onTouchOutside={() => setNewIncomeVisible(false)}
@@ -39,11 +61,14 @@ const IndexPage = props => {
         </Button>
       </View>
       <View style={styles.outcomes}>
-        <IncomeOutcome />
-        <IncomeOutcome />
-        <IncomeOutcome />
+        {props.entradas.map(entrada => (
+          <IncomeOutcome key={entrada.id} isEntrada={true} valores={entrada} />
+        ))}
+        {props.saidas.map(saida => (
+          <IncomeOutcome key={saida.id} isEntrada={false} valores={saida} />
+        ))}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -75,4 +100,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IndexPage;
+const mapStateToProps = state => ({
+  entradas: state.entradas.entradas,
+  saidas: state.saidas.saidas,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getEntradas: entradas =>
+    dispatch({type: Actions.getEntradas, payload: entradas}),
+  getSaidas: saidas => dispatch({type: Actions.getSaidas, payload: saidas}),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(IndexPage);

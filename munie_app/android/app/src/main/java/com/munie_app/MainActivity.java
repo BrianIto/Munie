@@ -2,6 +2,7 @@ package com.munie_app;
 
 import com.facebook.react.ReactActivity;
 
+
 public class MainActivity extends ReactActivity {
 
   /**
