@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import {connect} from "react-redux";
 
 const Header = props => {
   return (
@@ -33,4 +34,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+
+
+export default (Header);

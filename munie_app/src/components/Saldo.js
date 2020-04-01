@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {LineChart} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
+import {connect} from 'react-redux';
+import {entradasMenosSaidas} from '../assets/utils';
 
 const Saldo = props => {
   const data1 = [1, 2, 4, 2, 3, 1, 2.5, 5, 3.6];
@@ -13,7 +15,9 @@ const Saldo = props => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Saldo Atual</Text>
-      <Text style={styles.saldo}>R$ 1.284,00</Text>
+      <Text style={styles.saldo}>
+        R$ {entradasMenosSaidas(props.entradas, props.saidas)},00
+      </Text>
       <LineChart
         style={{height: 125}}
         curve={shape.curveNatural}
@@ -43,4 +47,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Saldo;
+const mapStateToProps = state => ({
+  entradas: state.entradas.entradas,
+  saidas: state.saidas.saidas,
+});
+
+export default connect(mapStateToProps)(Saldo);
